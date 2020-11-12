@@ -11,27 +11,27 @@ endif
 
 default:	help
 
-all:	HelloWorld.exe Circulation_jeton.exe Calcul_de_pi.exe Diffusion_hypercube.exe
+all:	hello_world.exe circulation_jeton.exe calcul_de_pi.exe diffusion_hypercube.exe
 
-HelloWorld.exe:	HelloWorld.cpp
-	$(CXX) $(CXXFLAGS) -o HelloWorld.exe HelloWorld.cpp $(LIB)
+hello_world.exe:	hello_world.cpp
+	$(CXX) $(CXXFLAGS) -o hello_world.exe hello_world.cpp $(LIB)
 
-Circulation_jeton.exe:	Circulation_jeton.cpp
-	$(CXX) $(CXXFLAGS) -o Circulation_jeton.exe Circulation_jeton.cpp $(LIB)
+circulation_jeton.exe:	circulation_jeton.cpp
+	$(CXX) $(CXXFLAGS) -o circulation_jeton.exe circulation_jeton.cpp $(LIB)
 
-Calcul_de_pi.exe:	Calcul_de_pi.cpp
-	$(CXX) $(CXXFLAGS) -o Calcul_de_pi.exe Calcul_de_pi.cpp $(LIB)
+calcul_de_pi.exe:	calcul_de_pi.cpp
+	$(CXX) $(CXXFLAGS) -o calcul_de_pi.exe calcul_de_pi.cpp $(LIB)
 
-Diffusion_hypercube.exe:	Diffusion_hypercube.cpp
-	$(CXX) $(CXXFLAGS) -o Diffusion_hypercube.exe Diffusion_hypercube.cpp $(LIB)
+diffusion_hypercube.exe:	diffusion_hypercube.cpp
+	$(CXX) $(CXXFLAGS) -o diffusion_hypercube.exe diffusion_hypercube.cpp $(LIB)
 
 help: 
 	@echo "Available targets : "
 	@echo "    all                      : compile all executables"
-	@echo "    HelloWorld.exe           : compile HelloWorld executable"
-	@echo "    Circulation_jeton.exe    : compile Circulation_jeton executable"
-	@echo "    Calcul_de_pi.exe         : compile Calcul_de_pi executable"
-	@echo "    Diffusion_hypercube.exe  : compile Diffusion_hypercube executable"
+	@echo "    hello_world.exe           : compile HelloWorld executable"
+	@echo "    circulation_jeton.exe    : compile Circulation_jeton executable"
+	@echo "    calcul_de_pi.exe         : compile Calcul_de_pi executable"
+	@echo "    diffusion_hypercube.exe  : compile Diffusion_hypercube executable"
 	@echo "Add DEBUG=yes to compile in debug"
 	@echo "Configuration :"
 	@echo "    CXX      :    $(CXX)"
