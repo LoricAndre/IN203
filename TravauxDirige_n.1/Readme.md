@@ -47,4 +47,4 @@ de ce que font tous les processus !
 
 ## Pi par lancer de fléchettes
  - Bloquant : 5s pour 16 threads chacun calculant 10 millions de points (précision aux alentours de $10^-4$)
- - Non bloquant : à peine plus long (?)
+ - Non bloquant : à peine plus long (dû à oversubscribe, je n'ai que 2 coeurs ?)

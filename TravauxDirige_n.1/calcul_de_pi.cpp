@@ -39,11 +39,6 @@ int main( int nargs, char* argv[] ) {
   int rank;
   MPI_Comm_rank(globComm, &rank);
 
-  /* File stream init */
-  std::stringstream fileName;
-  fileName << "Output" << std::setfill('0') << std::setw(5) << rank << ".txt";
-  std::ofstream output(fileName.str().c_str());
-
   /* Tasks : */
   if (rank == 0) {
   /* Thread 0 will do the aggregation */
@@ -61,7 +56,6 @@ int main( int nargs, char* argv[] ) {
     MPI_Send(&res, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
   }
 
-  output.close();
   MPI_Finalize();
   return EXIT_SUCCESS;
 }
