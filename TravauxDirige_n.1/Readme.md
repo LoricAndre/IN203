@@ -42,6 +42,9 @@ de ce que font tous les processus !
  - Envoi bloquant : Sûr car puisque tout est bloquant, on connait la valeur de tous nos paramètres lorsque nos tâches sont exécutées
  - Envoi non bloquant : On ne connaît pas l'état de nos paramètres. Il suffit de remonter l'appel à MPI_Wait au dessus de nos tâches.
 
+## Jeton
+ Pas de remarque particulière.
+
 ## Pi par lancer de fléchettes
  - Bloquant : 5s pour 16 threads chacun calculant 10 millions de points (précision aux alentours de $10^-4$)
- - Non bloquant : 
+ - Non bloquant : à peine plus long (?)
