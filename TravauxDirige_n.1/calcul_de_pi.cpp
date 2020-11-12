@@ -38,7 +38,6 @@ int main( int nargs, char* argv[] ) {
   MPI_Comm_size(globComm, &nbp);
   int rank;
   MPI_Comm_rank(globComm, &rank);
-  MPI_Status status;
 
   /* File stream init */
   std::stringstream fileName;
@@ -51,7 +50,7 @@ int main( int nargs, char* argv[] ) {
     double res;
     double total = 0;
     for (int i = 1; i < nbp; i++) {
-      MPI_Recv(&res, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD, &status);
+      MPI_Irecv(&res, 1, MPI_DOUBLE, i, 0, MPI_COMM_WORLD);
       total += res;
     }
     total /= (nbp - 1);
