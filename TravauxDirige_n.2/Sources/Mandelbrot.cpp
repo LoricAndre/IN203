@@ -123,16 +123,16 @@ void savePicture( const std::string& filename, int W, int H, const std::vector<i
     ofs.close();
 }
 
-int main(int argc, char *argv[] ) 
- { 
-    const int W = 800;
-    const int H = 600;
-    // Normalement, pour un bon rendu, il faudrait le nombre d'itérations
-    // ci--dessous :
-    //const int maxIter = 16777216;
-    const int maxIter = 8*65536;
-    auto iters = computeMandelbrotSet( W, H, maxIter );
-    savePicture("mandelbrot.tga", W, H, iters, maxIter);
-    return EXIT_SUCCESS;
- }
+/* int main(int argc, char *argv[] ) */ 
+/*  { */ 
+/*     const int W = 800; */
+/*     const int H = 600; */
+/*     // Normalement, pour un bon rendu, il faudrait le nombre d'itérations */
+/*     // ci--dessous : */
+/*     //const int maxIter = 16777216; */
+/*     const int maxIter = 8*65536; */
+/*     auto iters = computeMandelbrotSet( W, H, maxIter ); */
+/*     savePicture("mandelbrot.tga", W, H, iters, maxIter); */
+/*     return EXIT_SUCCESS; */
+/*  } */
     

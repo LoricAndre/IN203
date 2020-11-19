@@ -1,5 +1,5 @@
-#include Make.inc
-include Make_msys2.inc
+include Make_linux.inc
+# include Make_msys2.inc
 #include Make_osx.inc
 
 CXXFLAGS = -std=c++11 -fPIC
@@ -17,6 +17,9 @@ all: $(ALL)
 
 clean:
 	@rm -fr *.o *.exe *~ *.tga
+
+mandelbrot.exe: mandelbrot_mpi.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIB)
 
 %.exe: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIB)
