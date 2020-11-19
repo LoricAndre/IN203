@@ -35,7 +35,6 @@ int main( int nargs, char* argv[] ) {
     MPI_Finalize();
     return EXIT_SUCCESS;
   }
-
   /* File */
   std::stringstream fileName;
   fileName << "hypercube" << std::setfill('0') << std::setw(5) << rank << ".txt";
@@ -75,6 +74,7 @@ int main( int nargs, char* argv[] ) {
   }
 
   output << "Index got is " << prev << std::endl;
+  
   //
   // We send it back
   // Compute the number of children
