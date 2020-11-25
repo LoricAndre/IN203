@@ -14,11 +14,11 @@ int main( int nargs, char* argv[] ) {
   int rank;
   MPI_Comm_rank(globComm, &rank);
 
-  const int W = 800;
-  const int H = 600;
+  const int W = 200;
+  const int H = 150;
   const int maxIter = 16777216;
   std::vector<int> set(W*H);
-  int pixels_per_process = H * W / (nbp - 1);
+  int pixels_per_process = W * H / (nbp - 1);
   // 0 is the master
   MPI_Request reqs[nbp-1];
   if (rank == 0) {
@@ -33,12 +33,13 @@ int main( int nargs, char* argv[] ) {
     int maxIter;
     MPI_Recv(&maxIter, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     int lines = H / (nbp-1);
-    std::vector<int> pixels(H*W/(nbp-1));
+    std::vector<int> pixels(pixels_per_process);
     for (int i = 0; i < lines; i++) {
-      computeMandelbrotSetRow(W, H, maxIter, (i+rank)*W, &(pixels[i*W]));
+      computeMandelbrotSetRow(W, H, maxIter, lines*(rank-1) + i, pixels.data() + i*W);
     }
+    std::cout << rank << "is done." << std::endl;
 
-    MPI_Send(pixels.data(), lines*W, MPI_INT, 0, 0, MPI_COMM_WORLD);
+    MPI_Send(pixels.data(), pixels_per_process, MPI_INT, 0, 0, MPI_COMM_WORLD);
   }
 
   MPI_Finalize();
