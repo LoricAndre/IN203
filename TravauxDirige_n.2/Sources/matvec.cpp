@@ -120,6 +120,46 @@ int main(int nargs, char* argv[]){
   if (rank == 0) {
     std::vector<double> v(N);
     for (int i = 0; i < Nloc; i++) {
+      MPI_Recv(v.data()+i*N/Nloc, N/Nloc, MPI_DOUBLE, i+1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    }
+    std::cout << "v: " << v << std::endl;
+  } else {
+    std::vector<double> v(N/Nloc);
+    for (int i = 0; i < N/Nloc; i++) {
+      for (int k = 0; k < N; k++) {
+        v[i] += A(i, k) * u[k];
+      }
+    }
+    MPI_Send(v.data(), N/Nloc, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+  }
+
+
+
+
+  MPI_Finalize();
+  return EXIT_SUCCESS;
+}
+int columns_main(int nargs, char* argv[]){
+  const int N = 120;
+  Matrix A(N);
+  std::cout  << "A : " << A << std::endl;
+  std::vector<double> u(N);
+  for (int i = 0; i < N; ++i)
+    u[i] = i+1;
+  std::cout << " u : " << u << std::endl;
+  // Start
+  MPI_Init(&nargs, &argv);
+  MPI_Comm globComm;
+  MPI_Comm_dup(MPI_COMM_WORLD, &globComm);
+  int nbp;
+  MPI_Comm_size(globComm, &nbp);
+  int rank;
+  MPI_Comm_rank(globComm, &rank);
+
+  const int Nloc = nbp - 1;
+  if (rank == 0) {
+    std::vector<double> v(N);
+    for (int i = 0; i < Nloc; i++) {
       std::vector<double> this_v(N);
       MPI_Recv(this_v.data(), N, MPI_DOUBLE, i+1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
       for (int j = 0; j < N; j++)
