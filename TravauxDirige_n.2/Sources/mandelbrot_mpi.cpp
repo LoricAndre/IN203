@@ -23,15 +23,12 @@ int main( int nargs, char* argv[] ) {
   MPI_Request reqs[nbp-1];
   if (rank == 0) {
     for (int i = 0; i < nbp-1; i++) {
-      MPI_Send(&maxIter, 1, MPI_INT, i+1, 0, MPI_COMM_WORLD);
       MPI_Irecv(set.data()+i*pixels_per_process, pixels_per_process, MPI_INT, i+1, 0, MPI_COMM_WORLD, &reqs[i]);
     }
     MPI_Waitall(nbp-1, reqs, MPI_STATUSES_IGNORE);
 
     savePicture("mandelbrot.tga", W, H, set, maxIter);
   } else {
-    int maxIter;
-    MPI_Recv(&maxIter, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     int lines = H / (nbp-1);
     std::vector<int> pixels(pixels_per_process);
     for (int i = 0; i < lines; i++) {
