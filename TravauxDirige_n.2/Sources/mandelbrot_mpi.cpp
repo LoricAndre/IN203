@@ -18,7 +18,8 @@ int main( int nargs, char* argv[] ) {
   const int H = 150;
   const int maxIter = 16777216;
   std::vector<int> set(W*H);
-  int pixels_per_process = W * H / (nbp - 1);
+  int lines_per_process = H / (nbp - 1);
+  int pixels_per_process = W * lines_per_process;
   // 0 is the master
   MPI_Request reqs[nbp-1];
   if (rank == 0) {
@@ -29,10 +30,9 @@ int main( int nargs, char* argv[] ) {
 
     savePicture("mandelbrot.tga", W, H, set, maxIter);
   } else {
-    int lines = H / (nbp-1);
     std::vector<int> pixels(pixels_per_process);
-    for (int i = 0; i < lines; i++) {
-      computeMandelbrotSetRow(W, H, maxIter, lines*(rank-1) + i, pixels.data() + i*W);
+    for (int i = 0; i < lines_per_process; i++) {
+      computeMandelbrotSetRow(W, H, maxIter, lines_per_process*(rank-1) + i, pixels.data() + i*W);
     }
     std::cout << rank << "is done." << std::endl;
 
