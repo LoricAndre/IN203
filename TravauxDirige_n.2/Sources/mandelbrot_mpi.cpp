@@ -14,8 +14,8 @@ int main( int nargs, char* argv[] ) {
   int rank;
   MPI_Comm_rank(globComm, &rank);
 
-  const int W = 200;
-  const int H = 150;
+  const int W = 20000;
+  const int H = 15000;
   const int maxIter = 16777216;
   std::vector<int> set(W*H);
   int lines_per_process = H / (nbp - 1);
