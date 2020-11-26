@@ -449,7 +449,7 @@ int  main(int argc, char *argv[])  {
    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
    MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
 
-   if (numtasks%2 == 2 )
+   if (rank%2 == 0 )
      MPI_Comm_split( MPI_COMM_WORLD, 0, rank, &new_comm );
    else
      MPI_Comm_split( MPI_COMM_WORLD, 1, rank, &new_comm );
@@ -491,11 +491,12 @@ avec son code (en considérant $n\gg 1$) ?
 À votre avis, pour ce jeu de donné spécifique, quel nombre de n{\oe}uds de calcul semble-t-il
 raisonnable de prendre pour ne pas trop gaspiller de ressources CPU ?
 
-En effectuant son calcul sur son calculateur, Alice s'aperçoit qu'elle obtient une accélération
-maximale de quatre en augmentant le nombre de n{\oe}uds de calcul pour son jeu spécifique de $n$ données.
+En effectuant son cacul sur son calculateur, Alice s'aperçoit qu'elle obtient une accélération
+maximale de quatre en augmentant le nombre de n{\oe}uds de calcul pour son jeu spécifique de données.
 
-En doublant la quantité de données à traiter, et en supposant la complexité de l'algorithme parallèle
-linéaire, quelle accélération maximale peut espérer Alice en utilisant la loi de Gustafson ?
+En doublant la quantité de donnée à traiter, et en supposant la complexité de l'algorithme parallèle
+linéaire, quelle accélération maximale peut espérer Alice en
+utilisant la loi de Gustafson ?
 
 \subsection{Ensemble de mandelbrot}
 
