@@ -67,15 +67,16 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 
   ordre           | time    | MFlops  | MFlops(n=2048) 
 ------------------|---------|---------|----------------
-i,j,k (origine)   | 2.73764 | 782.476 |                
-j,i,k             |  |  |    
-i,k,j             |  |  |    
-k,i,j             |  |  |    
-j,k,i             |  |  |    
-k,j,i             |  |  |    
+i,j,k (origine)   | 11.9    | 179.249 |                
+j,i,k             | 12.2    | 175.744 |
+i,k,j             | 37.1    | 57.863  |
+k,i,j             | 36.7    | 58.548  |
+j,k,i             | 1.2     | 1731.1  |
+k,j,i             | 1.4     | 1590.2  |
 
 
 *Discussion des résultats*
+L'optimal est donc j,k,i que l'on conserve dans le reste de l'exercice.
 
 
 
@@ -85,15 +86,16 @@ k,j,i             |  |  |
 
   OMP_NUM         | MFlops  | MFlops(n=2048) | MFlops(n=512)  | MFlops(n=4096)
 ------------------|---------|----------------|----------------|---------------
-1                 |  |
-2                 |  |
-3                 |  |
-4                 |  |
-5                 |  |
-6                 |  |
-7                 |  |
-8                 |  |
-
+1 | 1760.08
+2 | 3267.47
+3 | 3176.77
+4 | 3395.14
+5 | 3236.46
+6 | 3266.17
+7 | 3378.63
+8 | 3335.28
+*Note: 
+Mon CPU étant capable uniquement de 2 threads, la majorité de ces données sont peu intéressantes*
 
 
 
