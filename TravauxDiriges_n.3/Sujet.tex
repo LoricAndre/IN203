@@ -87,14 +87,14 @@ Soit
 \[
 C_{ij} = \left(v_{A}|u_{B}\right)u_{A_{i}}.v_{B_{j}}
 \]
-ce qui nécessite en tout $2.n+2.n^{2}$ opérations arithmétiques ( dont $2.n$ opérations pour le produit scalaire ).
+ce qui nécessite en tout $2.n+2.n^{2}$ opérations arithmétiques ( dont $2.n$ opérations pour le produit scalaire~).
 
 On se propose par étape de paralléliser le produit matrice--matrice fourni dans le fichier \texttt{ProdMatMat.cpp}. L'exécutable pour tester le produit matrice-matrice est \texttt{TestProduitMatrix.exe} :
 
 \begin{enumerate}
-	\item Mesurer le temps de calcul du produit matrice--matrice donné en donnant en dimension diverses dimensions. Essayez en particulier de prendre pour dimension 1023, 1024 et 1025 (il suffit de passer en la dimension en argument à l'exécution. Par exemple \verb@./TestProductMatrix.exe 1023@ testera le produit matrice-matrice pour des matrices de dimension 1023). En vous servant du support
+	\item Mesurer le temps de calcul du produit matrice--matrice donné en donnant en entrée diverses dimensions. Essayez en particulier de prendre pour dimension 1023, 1024 et 1025 (il suffit de passer la dimension en argument à l'exécution. Par exemple \verb@./TestProductMatrix.exe 1023@ testera le produit matrice-matrice pour des matrices de dimension 1023). En vous servant du support
 	de cours \texttt{IN203\_Course3\_Lecture\_notes.pdf}, expliquez clairement les temps obtenus.
-	\item \textbf{\color{blue}Première optimisation :} Permutez les  boucles en $i,j$ et $k$ jusqu'à obtenir un temps optimum pour le calcul du produit matrice--matrice ( et après vous être persuader que cela ne changera rien au calcul ). Expliquez pourquoi la permutation des boucles optimales que vous avez trouvée
+	\item \textbf{\color{blue}Première optimisation :} Permutez les  boucles en $i,j$ et $k$ jusqu'à obtenir un temps optimum pour le calcul du produit matrice--matrice ( et après vous être persuadé que cela ne changera rien au résulat du calcul ). Expliquez pourquoi la permutation des boucles optimales que vous avez trouvée
 	est bien la façon optimale d'ordonner les boucles en vous servant toujours du support de cours.
 	\item \textbf{\color{blue}Première parallélisation : } \`A l'aide d'OpenMP, paralléliser le produit matrice--matrice. Mesurez le temps obtenu en variant le nombre de threads à l'aide de la variable d'environnement \texttt{OMP\_NUM\_THREADS}. Calculez l'accélération et le résultat obtenu en fonction du nombre de threads et commentez et expliquez clairement les résultats obtenus. 
 	\item Argumentez et donnez clairement la raison pour laquelle il est sûrement possible d'améliorer le
@@ -138,7 +138,7 @@ C_{IJ} = \sum_{K=1}^{N}A_{IK}.B_{KJ}
 \]
 
 Mettre en {\oe}uvre ce produit matrice--matrice en séquentiel puis faire varier la taille des blocs jusqu'à obtenir un optimum.
-\item Comparer le temps pris par rapport au produit matrice--matrice "scalaire". Comment interprétez vous le résultat obtenu ?
+\item Comparer le temps pris par rapport au produit matrice--matrice "scalaire". Comment interprétez vous le résultat obtenu~?
 
 \item \textbf{\color{blue}Parallélisation du produit matrice--matrice par bloc }: \`A l'aide d'OpenMP, parallélisez le produit matrice--matrice par bloc puis mesurez l'accélération parallèle en fonction du nombre de threads. Comparez avec la version scalaire paralléliser. Comment expliquez vous ce résultat ?
 \end{enumerate}
@@ -281,7 +281,7 @@ Paralléliser à l'aide des threads de C++ 2011 l'algorithme de tri puis calcule
 l'accélération obtenue pour le tri sur les entiers puis pour le tri sur les vecteurs.
 
 Comment interprétez-vous la différence d'accélération entre le tri sur les entiers et
-le tri  sur les vecteurs ?
+le tri  sur les vecteurs~?
 
 \section{Ensemble de Bhudda}
 
