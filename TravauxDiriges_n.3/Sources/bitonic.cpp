@@ -9,11 +9,19 @@
 # include <chrono>
 # include <stdexcept>
 # include "Vecteur.hpp"
+#include <pthread.h>
+
 using namespace Algebra;
 
 // Tri Parallèle Bitonic
 namespace Bitonic
 {
+  template<typename Obj>
+  struct thread_data {
+    bool up;
+    Obj* objs;
+    int len;
+  };
   template<typename Obj>
   void _compare( bool up, Obj* objs, int len )
   {
@@ -35,14 +43,37 @@ namespace Bitonic
     return std::make_pair(first.first, first.second + second.second);
   }
   // --------------------------------------------
+  template<typename Obj>
+  void* _sort_thread(void*);
   template<typename Obj> std::pair<Obj*,int>
   _sort( bool up, Obj* objs, int len )
   {
     if (len <= 1) return std::make_pair(objs,1);
-    auto first  = _sort(true , objs, len/2);
-    auto second = _sort(false, objs + len/2, len - (len/2));
-    return _merge(up, first.first, first.second + second.second );
+    std::pair<Obj*, int>* sorted[2];
+    pthread_t threads[2];
+    thread_data<Obj> first_data = {
+      true,
+      objs,
+      len/2
+    };
+    thread_data<Obj> second_data = {
+      true,
+      objs,
+      len/2
+    };
+    pthread_create(&threads[0], NULL, _sort_thread<Obj>, (void*) &first_data);
+    pthread_create(&threads[1], NULL, _sort_thread<Obj>, (void*) &second_data);
+    for (int i = 0; i < 2; i++)
+      pthread_join(threads[i], (void**) &sorted[i]);
+    return _merge(up, sorted[0]->first, sorted[0]->second + sorted[1]->second );
   }
+  template<typename Obj> void*
+    _sort_thread(void* raw_args) {
+      thread_data<Obj>* args = (thread_data<Obj>*) raw_args;
+      std::pair<Obj*, int>* res = (std::pair<Obj*, int>*) malloc(sizeof(std::pair<Obj*, int>));
+      *res = _sort(args->up, args->objs, args->len);
+      pthread_exit((void*) res);
+    }
   // --------------------------------------------
   template<typename Obj> std::vector<Obj>&
   sort( bool up, std::vector<Obj>& x )

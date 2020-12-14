@@ -94,6 +94,7 @@ bhuddabrot ( unsigned long nbSamples, unsigned long maxIter, unsigned width, uns
 
     std::cerr << "Computing starting c\n";
     std::vector<unsigned> image(width*height, 0U);
+#pragma omp for
     for ( unsigned long iSample = 0; iSample < nbSamples; ) {
         float r = genNorm();
         float angle = genAngle();
@@ -156,6 +157,7 @@ int main()
     start = std::chrono::system_clock::now();
     float b1, b2, b3;
     b1 = 0; b2 = 0; b3 = 0;
+#pragma omp for
     for ( unsigned i = 0; i < height; ++i ) {
         for (unsigned j = 0; j < width; ++j ) {
             unsigned long ind = i*width+j;
@@ -168,6 +170,7 @@ int main()
     float scal1 = 16.*stride/b1;
     float scal2 = 16.*stride/b2;
     float scal3 = 16.*stride/b3;
+#pragma omp for
     for ( unsigned i = 0; i < height; ++i ) {
         for (unsigned j = 0; j < width; ++j ) {
             unsigned long ind = i*width+j;
