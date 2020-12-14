@@ -9,7 +9,7 @@ else
 CXXFLAGS += -O3 -march=native -Wall
 endif
 
-LIBS = $(LIB) `sdl2-config --cflags --libs` -lSDL2_image
+LIBS = $(LIB) `sdl2-config --cflags` `sdl2-config --libs` -lSDL2_image
 
 ALL= colonisation.exe
 
