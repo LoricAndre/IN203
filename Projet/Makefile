@@ -34,6 +34,9 @@ src/colonisation.o: src/colonisation.cpp src/parametres.hpp src/galaxie.hpp
 colonisation.exe : $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o colonisation.exe $(LIBS)
 
+colonisation_mpi.exe : $(OBJS)
+	mpic++ $(CXXFLAGS) $(OBJS) -o colonisation.exe $(LIBS)
+
 help:
 	@echo "Available targets : "
 	@echo "    all            : compile the executable"

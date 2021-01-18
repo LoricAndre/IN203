@@ -138,3 +138,10 @@ toujours inhabitable.*
   - Un rapport où on parlera des éventuels conflits mémoires et pourquoi ils ne posent pas de problème,
     ainsi que le calcul des accélérations (speedup) obtenus en mémoire partagée uniquement, en mémoire
     distribuée uniquement et en mélangeant les deux parallélisations.
+
+
+
+# Temps :
+ - Base : 1256475 années - 31.17 secs : 403010 ans/s
+ - OMP :  1056825 années - 57.53 secs : 18370 ans/s
+ - MPI : 

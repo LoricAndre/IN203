@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL_image.h>
 #include "galaxie.hpp"
+#include <algorithm>
 
 //_ ______________________________________________________________________________________________ _
 galaxie::galaxie(int width, int height)
@@ -52,6 +53,13 @@ galaxie::swap(galaxie& g)
 {
     g.m_planetes.swap(this->m_planetes);
 }
+
+void
+galaxie::build(galaxie& g, unsigned int split_width)
+{
+    copy_if(g.m_planetes.begin(), g.m_planetes.end(), m_planetes.begin(), [&split_width, this](int i){return ((i % m_width) % split_width != 0);});
+}
+
 //# ############################################################################################## #
 galaxie_renderer::galaxie_renderer(SDL_Window* win)
 {

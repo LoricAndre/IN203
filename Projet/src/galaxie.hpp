@@ -23,8 +23,11 @@ public:
     int height() const { return m_height; }
     const char* data() const { return m_planetes.data(); }
     char* data() { return m_planetes.data(); }
+    char operator[] (int i) { return m_planetes[i];}
 
     void swap(galaxie& g);
+
+    void build(galaxie& g, unsigned int split_width);
 
 private:
     int m_width, m_height;

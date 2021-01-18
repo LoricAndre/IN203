@@ -1,5 +1,8 @@
 #ifndef _PARAMETRES_HPP_
 #define _PARAMETRES_HPP_
+#include <random>
+
+/* #define USE_OMP */
 
 /***************************************************************************************************
  * @brief      Paramètres pour les différentes colonies                                            *
