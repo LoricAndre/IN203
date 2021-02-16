@@ -1,0 +1,3 @@
+[submodule "course"]
+	path = course
+	url = git@github.com:JuvignyEnsta/IN203_SUPPORT_COURS.git
